@@ -1,0 +1,121 @@
+.header {
+  background: #eee;
+  width: 100%;
+  height: 50px;
+  position: fixed;
+
+  display: flex;
+  justify-content: center;
+
+  z-index: 100;
+
+  &__container {
+    background: #eee;
+    width: 100%;
+    height: 50px;
+    position: relative;
+
+    padding: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+  }
+
+  &__logo, &__link {
+    color: #333;
+    text-decoration: underline transparent;
+    display: flex;
+    transition: color .2s, text-decoration-color .2s;
+
+    &:focus-visible, &:hover {
+      outline: none;
+      color: #000;
+      text-decoration-color: #000;
+    }
+  }
+
+  &__toggle-nav {
+    display: none;
+    background: #444;
+    outline: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+
+    transition: background .2s;
+
+    &:hover, &:focus-visible {
+      background: #000;
+    }
+    
+    rect {
+      transition: transform .3s;
+      transform-origin: center;
+    }
+  }
+
+  &__toggle-nav--open {
+
+    rect:nth-child(1) {
+      transform: rotate(45deg) translateY(6px);
+    }
+    rect:nth-child(2) {
+      transform: rotate(45deg);
+    }
+    rect:nth-child(3) {
+      transform: rotate(-45deg) translateY(-6px);
+    }
+  }
+
+  &__mobile-nav {
+    display: none;
+    top: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    z-index: -1;
+    position: fixed;
+    width: 100%;
+    background: #eee;
+    padding: 20px;
+    transform: translateY(calc(-100% - 50px));
+    transition: transform .3s;
+    border-top: 1px solid var(--gray);
+    
+    a {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    &__nav{
+      display: none;
+    }
+
+    &__toggle-nav {
+      display: flex;
+      
+    }
+
+    &__mobile-nav {
+      display: flex;
+    }
+
+    &__mobile-nav--open {
+      transform: translateY(0px);
+    }
+  }
+}
